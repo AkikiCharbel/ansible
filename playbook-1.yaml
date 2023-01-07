@@ -1,0 +1,19 @@
+- name: "manage server 1 and 2"
+  hosts: server1, server2
+  become: true
+  tasks:
+    - name: "install java"
+      apt:
+        state: present
+        name: openjdk-11-jdk
+        update_cache: yes
+    - name: "alice user"
+      user:
+        name: alice
+        state: present
+    - name: "httpd application installed"
+      apt:
+        name: "apache2"
+        state: present
+        update_cache: yes
+    
